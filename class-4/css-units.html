@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 20px;">  <!-- 1rem = 20px. Default is 16px; -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Units</title>
+  <style>
+    .pixel-example {
+      width: 200px;
+      height: 200px;
+      font-size: 20px;
+      background-color: lightcoral;
+    }
+
+    .percent-example {
+      width: 50%;
+      height: 50%;
+      font-size: 120%;
+      background-color: lightblue;
+    }
+
+    .rem-example {
+      font-size: 1.5rem;
+    }
+
+    .viewport-example {
+      width: 50vw; /* 50% of the viewport width */
+      height: 50vh; /* 50% of the viewport height */
+      background-color: lightgreen;
+    }
+
+    .container {
+      width: 100px;
+      height: 100px;
+      background-color: lightcoral;
+    }
+  </style>
+</head>
+<body>
+  <div class="pixel-example">Pixel Example</div> <!-- Precise and fixed size -->
+  
+  <div class="container">
+    <div class="percent-example">Percentage Example</div> <!-- Responsive and fluid design -->
+  </div>
+  <div class="rem-example">REM Example</div> <!-- Relative to the root element. Used for consistent scaling. -->
+  <div class="viewport-example">Viewport Example</div> <!-- Relative to the viewport. Used for responsive design based on viewport. -->
+</body>
+</html>
