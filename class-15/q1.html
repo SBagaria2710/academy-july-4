@@ -11,6 +11,14 @@
 
     <script>
       //Q1 on Clicking the Button append hello to the page
+      let btnElem = document.getElementById("btn");
+      btnElem.addEventListener("click", function () {
+        let newDivElem = document.createElement("p");
+        newDivElem.textContent = "Hello";
+
+        // let bodyElem = document.querySelector("body");
+        document.body.append(newDivElem);
+      });
     </script>
   </body>
 </html>

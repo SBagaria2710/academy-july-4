@@ -5,5 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <h1>This is Heading 1</h1>
+    <div id="container">
+      <div>
+        <h2>This is Heading 2</h2>
+      </div>
+      <div>
+        <h2>This is Heading 2</h2>
+        <p>This is Paragraph Tag</p>
+      </div>
+      <button>Click Me!</button>
+    </div>
+
+    <script>
+      const headingElem = document.querySelector("h2");
+      const btn = document.querySelector("button");
+      const containerElem = document.getElementById("container");
+      console.log("innerHTML =>", containerElem.innerHTML);
+      console.log("innerText =>", containerElem.innerText);
+
+      btn.addEventListener("dblclick", function () {
+        console.log("Clicked!");
+        headingElem.textContent = "Hello World!";
+      });
+    </script>
+  </body>
 </html>

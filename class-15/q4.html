@@ -57,10 +57,24 @@
       //double clicking on them and attaches the fetched class to that card.
       // Also changes the data-color attribute to "used"
 
-      // Fire event on double clicking [Done]
-      // Fetch data-color value [Done]
-      // Add fetched attribute value as class on the same element [Done]
-      // change data-color for the selected element to "used"
+      /*
+        1. Fire event on double clicking on all cards [DONE]
+        2. Fetch the data-color attribute of the card [DONE]
+        3. Add fetched attribute value as class on the same element [DONE]
+        4. change data-color for the selected element to "used" [DONE]
+      */
+
+      const cards = document.querySelectorAll(".card");
+      for (let i = 0; i < cards.length; i++) {
+        const currentCard = cards[i];
+        currentCard.addEventListener("dblclick", function () {
+          const color = currentCard.getAttribute("data-color");
+          if (color !== "used") {
+            currentCard.classList.add(color);
+            currentCard.setAttribute("data-color", "used");
+          }
+        });
+      }
     </script>
   </body>
 </html>

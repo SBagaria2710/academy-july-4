@@ -20,6 +20,15 @@
     </ul>
     <script>
       // Fix the list by inserting the missing element using querySelectorAll and insertBefore
+      const container = document.querySelector("ul");
+
+      const allItems = document.querySelectorAll("li");
+      const eigthElem = allItems[6];
+
+      const newElem = document.createElement("li");
+      newElem.textContent = "7"; // Inserting the missing element
+
+      container.insertBefore(newElem, eigthElem);
     </script>
   </body>
 </html>
