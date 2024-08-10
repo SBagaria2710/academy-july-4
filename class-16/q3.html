@@ -40,6 +40,23 @@ from the list and the "Remove All" button to clear all tasks from the list simul
     </ul>
     <script>
       // Q- Make remove all button work  and make individual delete btn work
+      const removeAllBtn = document.querySelector("#removeAll");
+      const allDeleteBtn = document.querySelectorAll(".delete_button");
+      const listItems = document.querySelectorAll("li");
+
+      // Delete Individual Tasks
+      for (let j = 0; j < allDeleteBtn.length; j++) {
+        allDeleteBtn[j].addEventListener("click", function (event) {
+          event.target.parentElement.remove();
+        });
+      }
+
+      // Delete all at once
+      removeAllBtn.addEventListener("click", function () {
+        for (let i = 0; i < listItems.length; i++) {
+          listItems[i].remove();
+        }
+      });
     </script>
   </body>
 </html>
