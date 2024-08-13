@@ -1,0 +1,13 @@
+// Difference with normal JS Object:
+// 1. Keys must be in double quotes
+// In JSON, strings also must in double quotes
+// No comments in JSON
+
+[
+  {
+    "name": "Biryani",
+    "price": 200,
+    "category": "non-veg",
+    "isAvailable": true
+  }
+]
