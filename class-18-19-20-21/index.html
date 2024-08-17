@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>[WIP] Kanban Board</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!-- Tool Box -->
+    <nav class="toolbox-cont">
+      <!-- Color Boxes -->
+      <div class="toolbox-priority-cont">
+        <div class="lightpink color"></div>
+        <div class="lightblue color"></div>
+        <div class="lightgreen color"></div>
+        <div class="black color"></div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-btn-cont">
+        <button><i class="fa-solid fa-plus"></i></button>
+        <div class="divider"></div>
+        <button><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </nav>
+
+    <!-- Main Section -->
+    <div class="main-cont">
+      <!-- Single Task Card -->
+      <div class="ticket-cont">
+        <!-- Color Code -->
+        <div class="ticket-color"></div>
+
+        <!-- Unique ID -->
+        <div class="ticket-id">#123456</div>
+
+        <!-- ticket task -->
+        <div class="task-area">Testing Task</div>
+
+        <!-- Lock -->
+        <div class="ticket-lock"><i class="fa-solid fa-lock"></i></div>
+      </div>
+    </div>
+
+    <!-- Task Container Modal -->
+    <div class="modal-cont">
+      <div class="task-container">
+        <textarea class="textArea-cont" placeholder="Write..."></textarea>
+        <button>Submit</button>
+      </div>
+
+      <!-- Color Codes -->
+      <div class="priority-task-cont">
+        <div class="lightpink priority-color"></div>
+        <div class="lightblue priority-color"></div>
+        <div class="lightgreen priority-color"></div>
+        <div class="black priority-color active"></div>
+      </div>
+    </div>
+  </body>
+</html>
