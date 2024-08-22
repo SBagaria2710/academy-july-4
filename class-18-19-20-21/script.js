@@ -1,3 +1,9 @@
+/**
+ * 1. Lock
+ * 2. Delete
+ * 3. Color Change
+ */
+
 const addBtn = document.querySelector(".add-btn");
 const modalCont = document.querySelector(".modal-cont");
 const mainCont = document.querySelector(".main-cont");
@@ -12,6 +18,7 @@ let addTaskFlag = false;
 let activePriorityTaskColor = "";
 let activeToolboxColor = "all";
 let ogTickets = [];
+const colors = ["lightpink", "lightblue", "lightgreen", "black"];
 
 /**
  * @returns Tickets that needs to be displayed
@@ -76,17 +83,67 @@ function toggleModal() {
   addTaskFlag = !addTaskFlag;
 }
 
+function handleLock(ticketId, ticketElem) {
+  const lockClass = "fa-lock";
+  const unlockClass = "fa-lock-open";
+  const ticketLockElem = ticketElem.querySelector(".ticket-lock i");
+  const ticketTaskArea = ticketElem.querySelector(".task-area");
+  ticketLockElem.addEventListener("click", (event) => {
+    if (ticketLockElem.classList.contains(lockClass)) {
+      ticketLockElem.classList.remove(lockClass);
+      ticketLockElem.classList.add(unlockClass);
+
+      ticketTaskArea.setAttribute("contenteditable", "true");
+    } else {
+      console.log(event);
+      ticketLockElem.classList.remove(unlockClass);
+      ticketLockElem.classList.add(lockClass);
+
+      ticketTaskArea.setAttribute("contenteditable", "false");
+      let idx = ogTickets.findIndex((ticket) => {
+        return ticket.id === ticketId;
+      });
+
+      ogTickets[idx].task = ticketTaskArea.textContent;
+    }
+  });
+}
+
+function handleColor(ticketId, ticketElem) {
+  const ticketColorElem = ticketElem.querySelector(".ticket-color");
+  ticketColorElem.addEventListener("click", function () {
+    const currentColor = ticketColorElem.classList[1];
+    let currentColorIdx = colors.findIndex((color) => {
+      return color === currentColor;
+    });
+    const newColorIdx = ++currentColorIdx % colors.length;
+    const newColor = colors[newColorIdx];
+
+    ticketColorElem.classList.remove(currentColor);
+    ticketColorElem.classList.add(newColor);
+
+    let idx = ogTickets.findIndex((ticket) => {
+      return ticket.id === ticketId;
+    });
+
+    ogTickets[idx].color = newColor;
+  });
+}
+
 // Function to create and append ticket to the main container
 function createTicket({ ticketTask, ticketColor, ticketId }) {
   let ticketCont = document.createElement("div");
   ticketCont.setAttribute("class", "ticket-cont");
 
-  ticketCont.innerHTML = `<div class="${ticketColor}"></div>
+  ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div>
         <div class="ticket-id">${ticketId}</div>
         <div class="task-area">${ticketTask}</div>
         <div class="ticket-lock"><i class="fa-solid fa-lock"></i></div>`;
 
   mainCont.append(ticketCont);
+
+  handleLock(ticketId, ticketCont);
+  handleColor(ticketId, ticketCont);
 }
 
 function onClickToolboxColors(event) {
@@ -129,4 +186,8 @@ priorityTaskColors.forEach(function (elem) {
 
 toolboxColors.forEach(function (elem) {
   elem.addEventListener("click", onClickToolboxColors);
+});
+
+document.getElementById("print").addEventListener("click", function () {
+  console.log(ogTickets);
 });
