@@ -5,6 +5,7 @@
  */
 
 const addBtn = document.querySelector(".add-btn");
+const removeBtn = document.querySelector(".remove-btn");
 const modalCont = document.querySelector(".modal-cont");
 const mainCont = document.querySelector(".main-cont");
 const taskDetail = document.querySelector(".textArea-cont");
@@ -15,6 +16,7 @@ const toolboxColors = document.querySelectorAll(".color");
 
 // Local Variables
 let addTaskFlag = false;
+let deleteMode = false;
 let activePriorityTaskColor = "";
 let activeToolboxColor = "all";
 let ogTickets = [];
@@ -130,6 +132,19 @@ function handleColor(ticketId, ticketElem) {
   });
 }
 
+function handleDelete(ticketId, ticketElem) {
+  ticketElem.addEventListener("click", () => {
+    if (deleteMode) {
+      ticketElem.remove();
+      ogTickets = ogTickets.filter((ticket) => {
+        return ticket.id !== ticketId;
+      });
+    } else {
+      console.log("Ignore");
+    }
+  });
+}
+
 // Function to create and append ticket to the main container
 function createTicket({ ticketTask, ticketColor, ticketId }) {
   let ticketCont = document.createElement("div");
@@ -144,6 +159,7 @@ function createTicket({ ticketTask, ticketColor, ticketId }) {
 
   handleLock(ticketId, ticketCont);
   handleColor(ticketId, ticketCont);
+  handleDelete(ticketId, ticketCont);
 }
 
 function onClickToolboxColors(event) {
@@ -179,6 +195,20 @@ submitBtn.addEventListener("click", function () {
 });
 
 addBtn.addEventListener("click", toggleModal);
+
+function toggleDeleteMode() {
+  deleteMode = !deleteMode;
+
+  if (deleteMode === true) {
+    alert("Delete Mode Activated!");
+    removeBtn.style.color = "red";
+  } else {
+    alert("Delete Mode Deactivated!");
+    removeBtn.style.color = "white";
+  }
+}
+
+removeBtn.addEventListener("click", toggleDeleteMode);
 
 priorityTaskColors.forEach(function (elem) {
   elem.addEventListener("click", onPriorityColorClickInModal);
