@@ -22,6 +22,12 @@ let activeToolboxColor = "all";
 let ogTickets = [];
 const colors = ["lightpink", "lightblue", "lightgreen", "black"];
 
+const ticketsFromLS = JSON.parse(localStorage.getItem("ogTickets"));
+if (ticketsFromLS) {
+  ogTickets = ticketsFromLS;
+  refreshMainContainer();
+}
+
 /**
  * @returns Tickets that needs to be displayed
  */
@@ -107,6 +113,7 @@ function handleLock(ticketId, ticketElem) {
       });
 
       ogTickets[idx].task = ticketTaskArea.textContent;
+      updateLocalStorage();
     }
   });
 }
@@ -129,6 +136,7 @@ function handleColor(ticketId, ticketElem) {
     });
 
     ogTickets[idx].color = newColor;
+    updateLocalStorage();
   });
 }
 
@@ -139,6 +147,7 @@ function handleDelete(ticketId, ticketElem) {
       ogTickets = ogTickets.filter((ticket) => {
         return ticket.id !== ticketId;
       });
+      updateLocalStorage();
     } else {
       console.log("Ignore");
     }
@@ -189,6 +198,7 @@ submitBtn.addEventListener("click", function () {
       color: activePriorityTaskColor,
       id: shortid(),
     });
+    updateLocalStorage();
     toggleModal();
     refreshMainContainer();
   }
@@ -218,6 +228,6 @@ toolboxColors.forEach(function (elem) {
   elem.addEventListener("click", onClickToolboxColors);
 });
 
-document.getElementById("print").addEventListener("click", function () {
-  console.log(ogTickets);
-});
+function updateLocalStorage() {
+  localStorage.setItem("ogTickets", JSON.stringify(ogTickets));
+}
