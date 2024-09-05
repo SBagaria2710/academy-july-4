@@ -1,11 +1,20 @@
 class Pizza {
   static totalPizzaMade = 0;
+  #toppings; // Private Property
+  #size; // Private Property
+  #crustType; // Private Property
+  #consumerName; // Private Property
 
-  constructor(toppings, size, crustType) {
-    this.toppings = toppings;
-    this.size = size;
-    this.crustType = crustType;
+  constructor(toppings, size, crustType, consumerName) {
+    this.#toppings = toppings;
+    this.#size = size;
+    this.#crustType = crustType;
+    this.#consumerName = consumerName;
     Pizza.totalPizzaMade++;
+  }
+
+  logConsumerName() {
+    console.log("Consumer Name =", this.#consumerName);
   }
 
   static calculateTotalPizzaMade() {
@@ -14,8 +23,8 @@ class Pizza {
 
   describe() {
     console.log(
-      `A ${this.size} pizza with ${this.toppings.join(", ")} on a ${
-        this.crustType
+      `A ${this.#size} pizza with ${this.#toppings.join(", ")} on a ${
+        this.#crustType
       } crust`
     );
   }
@@ -24,27 +33,18 @@ class Pizza {
 const p = new Pizza(
   ["jalapeno", "cheese", "tomato", "onion", "corn"],
   "regular",
-  "thick"
+  "thick",
+  "Shashwat"
 );
 
-const p1 = new Pizza(
-  ["jalapeno", "cheese", "tomato", "onion", "corn"],
-  "regular",
-  "thick"
-);
-
-const p3 = new Pizza(
-  ["jalapeno", "cheese", "tomato", "onion", "corn"],
-  "regular",
-  "thick"
-);
-
-Pizza.calculateTotalPizzaMade();
+p.consumerName = "Prakhar";
+p.logConsumerName();
 
 class StuffedCrustPizza extends Pizza {
+  #stuffingType;
   constructor(toppings, size, crustType, stuffingType) {
     super(toppings, size, crustType);
-    this.stuffingType = stuffingType;
+    this.#stuffingType = stuffingType;
   }
 
   logProperties() {
@@ -52,7 +52,7 @@ class StuffedCrustPizza extends Pizza {
   }
 
   describeSuffing() {
-    console.log(`This pizza has ${this.stuffingType}`);
+    console.log(`This pizza has ${this.#stuffingType}`);
   }
 }
 
